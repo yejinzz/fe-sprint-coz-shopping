@@ -17,7 +17,7 @@ const StyledHeader = styled.header`
     border-radius: 3px;
 `
 
-const Titlecontainer = styled.div`
+const TitleContainer = styled.div`
     margin-left:4rem;
 
     .tilte{
@@ -34,7 +34,7 @@ const Titlecontainer = styled.div`
 `;
 
 
-const Menucontainer = styled.div`
+const MenuContainer = styled.div`
     margin-right:4rem;
     #bar-button{
         font-size:20px;
@@ -54,14 +54,14 @@ const handleMenuOpen = () => {
 
 return (
     <StyledHeader>
-        <Titlecontainer>
+        <TitleContainer>
             <Link to="/" className="tilte"> 
                 <img id="logo" src='../codestates_logo.png' alt="codestates logo" /> 
                 <span id="name">COZ Shopping</span>
             </Link>
-        </Titlecontainer>
+        </TitleContainer>
 
-        <Menucontainer>
+        <MenuContainer>
             <div onClick = {handleMenuOpen} id="bar-button">
                 <FontAwesomeIcon icon={faBars} />
             </div>
@@ -69,7 +69,7 @@ return (
             <div id="menu">
                 {isOpen ? <Dropdown/> : null}
             </div>
-        </Menucontainer>
+        </MenuContainer>
     </StyledHeader>
 );
 }
