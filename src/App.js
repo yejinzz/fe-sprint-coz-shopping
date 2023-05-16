@@ -3,7 +3,7 @@ import './App.css';
 import Main from "./pages/Main";
 import Productlist from "./pages/Productlist";
 import Bookmark from "./pages/Bookmark";
-
+import Header from './components/Header';
 
 function App() {
   return(
