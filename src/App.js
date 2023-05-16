@@ -4,6 +4,7 @@ import Main from "./pages/Main";
 import Productlist from "./pages/Productlist";
 import Bookmark from "./pages/Bookmark";
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
   return(
@@ -14,6 +15,7 @@ function App() {
                 <Route path="/products/list" element={<Productlist/>}/>
                 <Route path="/bookmark" element={<Bookmark/>}/>
             </Routes>
+        <Footer />
     </BrowserRouter>
 );
 }
