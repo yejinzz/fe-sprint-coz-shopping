@@ -2,8 +2,10 @@ import styled from "styled-components";
 
 
 
-const ItemContainer = styled.div`
 
+
+const ItemContainer = styled.div`
+    margin-bottom:20px;
 `;
 
 const TopSection = styled.div`
@@ -31,7 +33,9 @@ const Image = styled.img`
 `;
 
 
-function Item ({ item }) {
+function Item ({item}) {
+
+
     if (item.type === 'Product') {
         return (
         <ItemContainer>
@@ -40,6 +44,7 @@ function Item ({ item }) {
                 <div className="title">{item.title}</div>
                 <div className="discount">{item.discountPercentage}%</div>
             </TopSection>
+            
             <BottomSection>
                 <div className="price">{item.price}원</div>
             </BottomSection>
