@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Bookmark () {
+function Bookmarklist () {
     return (
         <div></div>
     )
 }
 
-export default Bookmark;
+export default Bookmarklist;
