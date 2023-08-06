@@ -1,39 +1,37 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import Item from "./Item";
 import { styled } from "styled-components";
-import { AiFillStar } from "react-icons/ai";
+
+const BookMarkContainer = styled.section`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: 2rem 0;
+`;
 
 const BookMarkList = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px 30px;
   margin: 0 70px;
+
+  h1 {
+    grid-column: 1 / -1;
+  }
 `;
 
 const Bookmarks = () => {
-  const [bookMarked, setBookMarked] = useState([]);
-  // const [bookMarkedIds, setBookMarkedIds] = useState([]);
-
-  useEffect(() => {
-    //   // 이전에 저장된 데이터 로드
-    //     const storedData = localStorage.getItem('bookMarkedIds');
-    //     if (storedData) {
-    //         setBookMarkedIds(JSON.parse(storedData));
-    //     }
-    // 데이터 가져오기
-    // axios
-    //   .get("http://cozshopping.codestates-seb.link/api/v1/products")
-    //   .then((res) => setBookMarked(res.data))
-    //   .catch((err) => console.error(err));
-  }, []);
+  const bookmarkData = JSON.parse(localStorage.getItem("bookmarked"));
 
   return (
-    <BookMarkList>
-      {bookMarked.slice(0, 4).map((item) => (
-        <Item key={item.id} item={item} />
-      ))}
-    </BookMarkList>
+    <BookMarkContainer>
+      <BookMarkList>
+        <h1>북마크 리스트</h1>
+        {bookmarkData.slice(0, 4).map((data) => (
+          <Item key={data.id} item={data} />
+        ))}
+      </BookMarkList>
+    </BookMarkContainer>
   );
 };
 
