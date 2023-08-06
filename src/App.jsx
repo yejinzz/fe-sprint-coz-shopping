@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
 import Main from "./pages/Main";
 import Productlist from "./pages/Productlist";
 import Bookmarklist from "./pages/Bookmarklist";
