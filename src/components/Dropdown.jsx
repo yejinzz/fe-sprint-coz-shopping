@@ -45,11 +45,11 @@ const DropdownList = styled.ul`
 function Dropdown() {
   return (
     <DropdownContainer>
-      <div>OO님, 어서오세요!</div>
+      <div>예진님, 어서오세요!</div>
       <DropdownList>
         <Link to={"/products/list"}>
           <li>
-            <PiGiftThin />
+            <PiGiftThin style={{ marginRight: "5px" }} />
             상품리스트 페이지
           </li>
         </Link>
@@ -58,7 +58,7 @@ function Dropdown() {
 
         <Link to={"/bookmark"}>
           <li>
-            <PiStarThin />
+            <PiStarThin style={{ marginRight: "5px" }} />
             북마크 페이지
           </li>
         </Link>
