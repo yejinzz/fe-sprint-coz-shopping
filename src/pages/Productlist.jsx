@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { useSelector } from "react-redux";
+import useFetchData from "../hooks/useFetchData";
 import Item from "../components/Item";
 import Filter from "../components/Filter";
 import { styled } from "styled-components";
@@ -10,12 +11,11 @@ const ProductContainer = styled.section`
   flex-direction: column;
 `;
 
-const ProductWrapper = styled.section`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 0 70px;
+const ProductWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px;
+  margin: 2rem 0;
 `;
 
 const LoadingSpinner = styled.div`
@@ -48,7 +48,6 @@ const LoadingSpinner = styled.div`
 `;
 
 function Productlist() {
-  const [itemData, setItemData] = useState([]);
   const [activeCategory, setActiveCategory] = useState("All");
   const [filteredItems, setFilteredItems] = useState([]);
 
@@ -56,26 +55,19 @@ function Productlist() {
   const itemsPerPage = 8;
   const initialLoadCount = 16; // 최초에 로드할 아이템 개수
 
-  useEffect(() => {
-    axios
-      .get("http://cozshopping.codestates-seb.link/api/v1/products")
-      .then((res) => {
-        console.log(res);
-        setItemData(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  useFetchData("http://cozshopping.codestates-seb.link/api/v1/products");
+  const productData = useSelector((state) => state.product);
 
   useEffect(() => {
     if (activeCategory === "All") {
-      setFilteredItems(itemData.slice(0, initialLoadCount));
+      setFilteredItems(productData.slice(0, initialLoadCount));
     } else {
-      const filteredData = itemData.filter(
+      const filteredData = productData.filter(
         (item) => item.type === activeCategory
       );
       setFilteredItems(filteredData.slice(0, initialLoadCount));
     }
-  }, [activeCategory, itemData]);
+  }, [activeCategory, productData]);
 
   // 스크롤 이벤트 핸들러
   const handleScroll = () => {
@@ -103,16 +95,16 @@ function Productlist() {
 
         // 새로운 아이템 데이터를 슬라이스하여 기존 아이템 데이터에 추가
         if (activeCategory === "All") {
-          setFilteredItems(itemData.slice(0, endIndex));
+          setFilteredItems(productData.slice(0, endIndex));
         } else {
-          const filteredData = itemData.filter(
+          const filteredData = productData.filter(
             (item) => item.type === activeCategory
           );
           setFilteredItems(filteredData.slice(0, endIndex));
         }
       }, 1500); // 임의의 지연 시간을 설정하여 로딩 시각적인 효과를 주는 것으로 대체
     }
-  }, [isLoading, filteredItems, activeCategory, itemData, itemsPerPage]);
+  }, [isLoading, filteredItems, activeCategory, productData, itemsPerPage]);
 
   // 스크롤 이벤트 리스너 등록
   useEffect(() => {
