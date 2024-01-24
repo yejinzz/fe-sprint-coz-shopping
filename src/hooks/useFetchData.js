@@ -9,7 +9,7 @@ const useFetchData = (url) => {
     axios
       .get(url)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         dispatch(productActions.setProductData(res.data));
       })
       .catch((err) => {

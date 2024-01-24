@@ -11,10 +11,13 @@ const ItemContainer = styled.div`
 `;
 const ImgContainer = styled.div`
   position: relative;
+  /* width: 18rem; */
+  height: 14rem;
 
   .item-img {
-    width: 18rem;
-    height: 14rem;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 10px;
   }
 
@@ -30,7 +33,7 @@ const TopSection = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin-top: 5px;
-  font-weight: bold;
+  font-weight: 600;
   .discount {
     color: #452cdd;
   }
@@ -75,7 +78,7 @@ const Item = ({ item }) => {
         bookmarkData.some((bookmarkItem) => bookmarkItem.id === item.id)
       );
     }
-  });
+  }, []);
 
   return (
     <ItemContainer>
@@ -106,7 +109,7 @@ const Item = ({ item }) => {
         </>
       )}
 
-      {item.type === "Category" && (
+      {item.type === "Trending" && (
         <>
           <TopSection>
             <div className="title"># {item.title}</div>

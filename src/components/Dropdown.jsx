@@ -5,31 +5,32 @@ import { PiGiftThin } from "react-icons/pi";
 import { PiStarThin } from "react-icons/pi";
 
 const DropdownContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  white-space: nowrap;
   position: absolute;
-  top: 4rem;
-  right: 3.5rem;
+  top: 3rem;
+  right: 0;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 0 15px rgba(8, 7, 10, 0.2);
-  padding: 10px;
+  padding: 15px;
   font-size: 0.9rem;
 
   div {
-    margin: 10px 10px;
     font-weight: bold;
     color: rgb(12, 26, 94);
+    margin-bottom: 0.7rem;
   }
 `;
 
 const DropdownList = styled.ul`
   list-style-type: none;
   li {
-    /* margin: 10px 10px; */
-    height: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-
     &:hover {
       background: rgb(232, 232, 232);
     }
@@ -37,7 +38,7 @@ const DropdownList = styled.ul`
   hr {
     border: none;
     height: 0.1px;
-    margin: 1px;
+    margin: 0.3rem 0;
     background-color: gray;
   }
 `;

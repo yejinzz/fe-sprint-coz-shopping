@@ -7,24 +7,28 @@ import styled from "styled-components";
 const StyledHeader = styled.header`
   position: sticky;
   top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 4.5rem;
   background: #fff;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   border-radius: 3px;
-  z-index: 1000;
+  z-index: 99;
+`;
+const HeaderWrapper = styled.div`
+  height: 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
 `;
 
 const TitleContainer = styled.div`
-  margin-left: 4rem;
+  /* margin-left: 4rem; */
 
   .tilte {
     display: flex;
     align-items: center;
   }
-  #name {
+  .name {
     margin-left: 10px;
     font-size: 20px;
     font-weight: bold;
@@ -33,8 +37,8 @@ const TitleContainer = styled.div`
 `;
 
 const MenuContainer = styled.div`
-  margin-right: 4rem;
-  #bar-button {
+  position: relative;
+  .bar-button {
     font-size: 20px;
     &:hover {
       cursor: pointer;
@@ -51,20 +55,23 @@ function Header() {
 
   return (
     <StyledHeader>
-      <TitleContainer>
-        <Link to="/" className="tilte">
-          <img id="logo" src="../codestates_logo.png" alt="codestates logo" />
-          <span id="name">COZ Shopping</span>
-        </Link>
-      </TitleContainer>
+      <HeaderWrapper>
+        <TitleContainer>
+          <Link to="/" className="tilte">
+            <img
+              className="logo"
+              src="../codestates_logo.png"
+              alt="codestates logo"
+            />
+            <span className="name">COZ Shopping</span>
+          </Link>
+        </TitleContainer>
 
-      <MenuContainer>
-        <div onClick={handleMenuOpen} id="bar-button">
-          <FaBars />
-        </div>
-
-        <div id="menu">{isOpen ? <Dropdown /> : null}</div>
-      </MenuContainer>
+        <MenuContainer>
+          <FaBars onClick={handleMenuOpen} className="bar-button" />
+          {isOpen ? <Dropdown /> : null}
+        </MenuContainer>
+      </HeaderWrapper>
     </StyledHeader>
   );
 }
